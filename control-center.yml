@@ -1,0 +1,22 @@
+# control-center.yml: how the admin panel creates and deploys this site.
+# "Add an app" in the panel finds this file in the repository and fills its form with it.
+# No secrets here, or anywhere in a static site: every file it builds is sent to the browser.
+
+name: my-site                # lower case letters, digits and dashes; its folder on the server
+branch: main
+
+kind: static                 # built files served by nginx: nothing runs on the server
+install: npm ci              # installs exactly what package-lock.json lists (commit it)
+build: npm run build         # writes the site into dist/
+files: dist                  # the folder nginx serves after the build
+
+address: my-site             # becomes my-site.<your domain>
+construction: true           # starts on the construction page; launch it from its page when ready
+
+access: group                # public | account | group | admins
+group: admins                # who may open it; several groups go one per line:
+#   - friends
+#   - qa
+
+# env:                       # reach the build: write {{env.CONTACT}} in a page. Public: no secrets.
+#   CONTACT: hello@example.com

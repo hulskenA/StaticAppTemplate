@@ -1,0 +1,7 @@
+{
+  "name": "My site",
+  "description": "A static site in the house style, started from the static site template.",
+  "lang": "en",
+  "signIn": "required",
+  "signInUrl": ""
+}

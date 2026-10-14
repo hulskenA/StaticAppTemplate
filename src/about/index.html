@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="{{lang}}">
+<head>
+<title>How it works · {{name}}</title>
+<!-- include _parts/head.html -->
+</head>
+<body>
+<div class="ah-ground ah-ground--long ah-scale shell">
+
+<!-- include _parts/header.html -->
+
+<main class="ah-page main">
+  <section class="hero">
+    <span class="ah-label">An example to replace</span>
+    <h1 class="h1">How this site works</h1>
+    <p class="ah-lead">A second page, to show how pages share their header and how text is set. It lives in <code>src/about/index.html</code>, so its address is <code>/about/</code>.</p>
+  </section>
+
+  <section class="ah-section" aria-labelledby="files-title">
+    <h2 class="ah-section__title" id="files-title">Only files</h2>
+    <div class="ah-section__body prose">
+      <p>Nothing runs on the server for this site. At each deploy the panel downloads the repository, runs <code>npm run build</code>, and points nginx at the <code>dist/</code> folder the build wrote. A visit is nginx sending a file.</p>
+      <p>That makes the site fast and hard to break, and it sets its limits: no database, no form that saves something, no page that depends on who is reading it. When you need one of those, start from the app template.</p>
+    </div>
+  </section>
+
+  <section class="ah-section" aria-labelledby="open-title">
+    <h2 class="ah-section__title" id="open-title">Who can open it</h2>
+    <div class="ah-section__body prose">
+      <p>The panel decides, with the site's access: everyone, anyone with an account, or one or more groups. Behind the sign-in, nginx asks for the account before it sends any file, and the header shows <strong>Sign out</strong>.</p>
+      <p>The pages themselves never know who is signed in, and they hold no secret. Every file of the site reaches the browser of whoever may open it, so write nothing in it that those people should not read.</p>
+    </div>
+  </section>
+</main>
+
+<!-- include _parts/footer.html -->
+
+</div>
+</body>
+</html>

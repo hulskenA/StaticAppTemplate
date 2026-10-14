@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="{{lang}}">
+<head>
+<title>Not found · {{name}}</title>
+<!-- include _parts/head.html -->
+</head>
+<body>
+<div class="ah-ground ah-ground--long ah-scale shell">
+
+<!-- include _parts/header.html -->
+
+<!-- The page the server sends for an address that does not exist, with the status 404.
+     Write its links from the root (/about/): it answers at any address. -->
+<main class="ah-page main">
+  <section class="hero">
+    <span class="ah-label">Not found</span>
+    <h1 class="h1">Nothing at this address</h1>
+    <p class="ah-lead">The page may have moved, or the link has a typing mistake. The home page lists what is here.</p>
+    <div class="row-wrap"><a class="ah-btn" href="/">Go to the home page</a></div>
+  </section>
+</main>
+
+<!-- include _parts/footer.html -->
+
+</div>
+</body>
+</html>

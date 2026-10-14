@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="{{lang}}">
+<head>
+<title>{{name}}</title>
+<!-- include _parts/head.html -->
+</head>
+<body>
+<div class="ah-ground ah-ground--long ah-scale shell">
+
+<!-- include _parts/header.html -->
+
+<main class="ah-page main">
+  <section class="hero">
+    <span class="ah-label">An example to replace</span>
+    <h1 class="ah-display-xl">Welcome to <span class="ah-word">{{name}}</span></h1>
+    <p class="ah-lead">A starting point in the house style for a site made of files: pages, parts shared between them, and the charter's type, cards and buttons. Replace these pages with your own.</p>
+    <div class="row-wrap"><a class="ah-btn" href="/about/">See how it works</a></div>
+  </section>
+
+  <section class="ah-section" aria-labelledby="here-title">
+    <h2 class="ah-section__title" id="here-title">What is here</h2>
+    <div class="ah-section__body">
+      <div class="ah-grid pairs">
+        <article class="ah-card card">
+          <span class="material-symbols-outlined" aria-hidden="true">description</span>
+          <h3 class="h3">Pages</h3>
+          <p>Each <code>.html</code> file in <code>src/</code> is a page. A folder with an <code>index.html</code> gets a short address, like <code>/about/</code>.</p>
+        </article>
+        <article class="ah-card card">
+          <span class="material-symbols-outlined" aria-hidden="true">dashboard_customize</span>
+          <h3 class="h3">Shared parts</h3>
+          <p>The header, the footer and the fonts are written once, in <code>src/_parts/</code>, and every page includes them.</p>
+        </article>
+        <article class="ah-card card">
+          <span class="material-symbols-outlined" aria-hidden="true">palette</span>
+          <h3 class="h3">The charter</h3>
+          <p>Colours, type, cards and buttons come from <code>src/ds/</code>, the same two files the panel and the apps use.</p>
+        </article>
+        <article class="ah-card card">
+          <span class="material-symbols-outlined" aria-hidden="true">fact_check</span>
+          <h3 class="h3">Checked before it ships</h3>
+          <p><code>npm test</code> builds the site and follows every link, so a missing page or picture is caught on your PC.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="ah-section" aria-labelledby="work-title">
+    <h2 class="ah-section__title" id="work-title">Working on it</h2>
+    <div class="ah-section__body">
+      <dl class="ah-surface steps">
+        <div><dt class="data">npm run dev</dt><dd>Opens the site on your PC. The page reloads each time you save.</dd></div>
+        <div><dt class="data">npm test</dt><dd>Builds the site and checks its pages and links. Run it before each push.</dd></div>
+        <div><dt class="data">git push</dt><dd>Then press <strong>Deploy</strong> on the site's page in the panel. The previous build stays one click away.</dd></div>
+      </dl>
+    </div>
+  </section>
+</main>
+
+<!-- include _parts/footer.html -->
+
+</div>
+</body>
+</html>
