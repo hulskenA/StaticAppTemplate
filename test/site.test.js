@@ -105,6 +105,11 @@ test('{{env.NAME}} is filled in from the build\'s environment, made safe, empty 
     fs.writeFileSync(path.join(src, 'index.html'), '<p>{{env.CONTACT}}|{{ env.NOT_SET }}</p>');
     build({ src, out: dist, config: { name: 'Test', signIn: 'none' }, env: { CONTACT: 'Tom <tom@example.com>' } });
     assert.equal(fs.readFileSync(path.join(dist, 'index.html'), 'utf8'), '<p>Tom &lt;tom@example.com&gt;|</p>');
+    // On the server, only the app's own env: variables: a server variable stops the build.
+    fs.writeFileSync(path.join(src, 'index.html'), '<p>{{env.CONTACT}}</p>');
+    build({ src, out: dist, config: { name: 'Test', signIn: 'none' }, env: { CONTACT: 'x', CC_PUBLIC_ENV: 'CONTACT' } });
+    fs.writeFileSync(path.join(src, 'index.html'), '<p>{{env.HOME}}</p>');
+    assert.throws(() => build({ src, out: dist, config: { name: 'Test', signIn: 'none' }, env: { HOME: '/home/apps', CC_PUBLIC_ENV: 'CONTACT' } }), /not one of the app's env: variables/);
   } finally {
     fs.rmSync(src, { recursive: true, force: true });
     fs.rmSync(dist, { recursive: true, force: true });

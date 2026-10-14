@@ -75,7 +75,13 @@ function withIncludes(html, src, page, depth = 0) {
 export function render(rel, { src = SRC, config = loadConfig(), version = true, env = process.env } = {}) {
   let html = withIncludes(fs.readFileSync(path.join(src, rel), 'utf8'), src, rel);
   // Everything a static site builds is public: an env: variable written in a page is public too.
-  html = html.replace(/\{\{\s*env\.([A-Za-z_][A-Za-z0-9_]*)\s*\}\}/g, (all, key) => esc(env[key] ?? ''));
+  // On the server, only the app's own env: variables (named by the panel in CC_PUBLIC_ENV) are
+  // written: never a variable of the server itself, even by a typo.
+  const allowed = env.CC_PUBLIC_ENV === undefined ? null : new Set(env.CC_PUBLIC_ENV.split(',').filter(Boolean));
+  html = html.replace(/\{\{\s*env\.([A-Za-z_][A-Za-z0-9_]*)\s*\}\}/g, (all, key) => {
+    if (allowed && !allowed.has(key)) throw new SiteError(`${rel}: {{env.${key}}} is not one of the app's env: variables.`);
+    return esc(env[key] ?? '');
+  });
   html = html.replace(/\{\{\s*([A-Za-z][A-Za-z0-9]*)\s*\}\}/g, (all, key) => {
     if (!(key in config)) throw new SiteError(`${rel}: {{${key}}} is not a setting of site.config.json.`);
     return esc(config[key]);
